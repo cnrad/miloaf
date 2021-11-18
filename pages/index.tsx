@@ -12,21 +12,33 @@ const Home: NextPage = () => {
 
     useEffect(() => {
         updateTime();
+
+        if (!window) return;
+        const petStorage = localStorage.getItem("pet");
+
+        if (!petStorage) return;
+
+        setPetCount(parseInt(localStorage.getItem("pet") as string));
     }, []);
 
     function updateTime() {
-        let current = new Date().getTime();
+        const current = new Date().getTime();
 
-        let time = current - startDate;
+        const time = current - startDate;
 
-        let days = Math.floor(time / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((time / (1000 * 60 * 60)) % 24);
-        let minutes = Math.floor((time / (1000 * 60)) % 60);
-        let seconds = Math.floor((time / 1000) % 60);
+        const days = Math.floor(time / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((time / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((time / (1000 * 60)) % 60);
+        const seconds = Math.floor((time / 1000) % 60);
 
         setDate(`${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds `);
         setTimeout(updateTime, 1000);
     }
+
+    const incrementPet = () => {
+        setPetCount(petCount + 1);
+        localStorage.setItem("pet", `${petCount + 1}`);
+    };
 
     return (
         <>
@@ -40,7 +52,7 @@ const Home: NextPage = () => {
             >
                 <Kot
                     src="/miloaf.png"
-                    onClick={() => setPetCount(petCount + 1)}
+                    onClick={incrementPet}
                     whileTap={{ height: "8.5rem", transition: { duration: 0, ease: "easeInOut" } }}
                     whileHover={{ cursor: "pointer" }}
                     draggable={false}
