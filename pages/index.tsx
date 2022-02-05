@@ -59,12 +59,12 @@ const Home: NextPage = () => {
                 />
                 <PetCounter>pets: {petCount}</PetCounter>
                 <ArtLink
-                    href="https://instagram.com/sophjart/"
+                    href="https://twitter.com/catladydoodles"
                     target="_blank"
                     whileHover={{ color: "#4a4a47" }}
                     transition={{ duration: 0.2, ease: "easeInOut" }}
                 >
-                    @sophjart
+                    @catladydoodles
                 </ArtLink>
                 <Footer>
                     <DateCaption>{date}</DateCaption>
