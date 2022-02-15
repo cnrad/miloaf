@@ -68,7 +68,7 @@ const Home: NextPage = () => {
                 </ArtLink>
                 <Footer>
                     <DateCaption>{date}</DateCaption>
-                    {"made with EXTRA <3"}
+                    {"made with <3"}
                 </Footer>
             </Page>
         </>
