@@ -26,12 +26,19 @@ const Home: NextPage = () => {
 
         const time = current - startDate;
 
-        const days = Math.floor(time / (1000 * 60 * 60 * 24));
+        const years = Math.floor(time / (1000 * 60 * 60 * 24 * 365));
+        const days = Math.floor((time / (1000 * 60 * 60 * 24)) % 365);
         const hours = Math.floor((time / (1000 * 60 * 60)) % 24);
         const minutes = Math.floor((time / (1000 * 60)) % 60);
         const seconds = Math.floor((time / 1000) % 60);
 
-        setDate(`${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds `);
+        let dateString = "";
+        if (years > 0) {
+            dateString += `${years} year${years !== 1 ? 's' : ''}, `;
+        }
+        dateString += `${days} day${days !== 1 ? 's' : ''}, ${hours} hour${hours !== 1 ? 's' : ''}, ${minutes} minute${minutes !== 1 ? 's' : ''}, ${seconds} second${seconds !== 1 ? 's' : ''}`;
+        
+        setDate(dateString);
         setTimeout(updateTime, 1000);
     }
 
